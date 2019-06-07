@@ -16,17 +16,7 @@ class UpdateCompanies extends React.Component {
   handleChange(event) {
     this.setState({csvfile: event.target.files[0], flag: false})
   }
-  // importCSV = (event) => {
-  //   event.preventDefault();
-  //   const { csvfile } = this.state;
-  //   Papa.parse(csvfile, {
-  //     complete: function (result) {
-  //       let data = result.data;
-  //       console.log(data);
-  //     },
-  //     header:true
-  //   })
-  // }
+
   handleSubmit(event) {
     let updateCompanies = this.props
     event.preventDefault()
