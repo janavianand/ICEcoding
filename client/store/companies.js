@@ -50,11 +50,6 @@ const initialState = {
 
 //Reducer
 
-// function (result) {
-//   parsedData = result.data;
-//   console.log(parsedData)
-// },
-
 export default function(state = initialState, action) {
   switch (action.type) {
     case GET_COMPANIES:
