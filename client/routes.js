@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
-import {Route, Switch} from 'react-router-dom'
-import {Home, ViewCompanies} from './components'
+import {Route} from 'react-router-dom'
+import {Home, ViewCompanies, UpdateCompanies} from './components'
 
 /**
  * COMPONENT
@@ -11,6 +11,7 @@ class Routes extends Component {
       <div>
         <Route exact path="/" component={Home} />
         <Route exact path="/view" component={ViewCompanies} />
+        <Route exact path="/update" component={UpdateCompanies} />
       </div>
     )
   }

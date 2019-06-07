@@ -9,5 +9,16 @@ router.get('/view', async (req, res, next) => {
     next(error)
   }
 })
+router.put('/update', async (req, res, next) => {
+  try {
+    let data = await req.body.map(async i => {
+      let company = await Companies.findByPk(i.id)
+      return await company.update(i)
+    })
+    res.json(data)
+  } catch (error) {
+    next(error)
+  }
+})
 
 module.exports = router
