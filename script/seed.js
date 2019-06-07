@@ -1,18 +1,54 @@
 'use strict'
 
 const db = require('../server/db')
-const {User} = require('../server/db/models')
+const {Companies} = require('../server/db/models')
+
+const companies = [
+  {
+    Id: 100,
+    Name: 'ABC Ltd',
+    sharePriceDate: '2019-06-05',
+    sharePrice: 10.34,
+    comments:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+  },
+  {
+    Id: 101,
+    Name: 'DEF Ltd',
+    sharePriceDate: '2018-08-12',
+    sharePrice: 23.21,
+    comments:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+  },
+  {
+    Id: 145,
+    Name: 'REW Ltd',
+    sharePriceDate: '2017-04-02',
+    sharePrice: 12.34,
+    comments:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+  },
+  {
+    Id: 200,
+    Name: 'FED Ltd',
+    sharePriceDate: '2015-09-06',
+    sharePrice: 9.87,
+    comments:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+  }
+]
 
 async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
 
   const users = await Promise.all([
-    User.create({email: 'cody@email.com', password: '123'}),
-    User.create({email: 'murphy@email.com', password: '123'})
+    Companies.bulkCreate(companies)
+    // User.create({email: 'cody@email.com', password: '123'}),
+    // User.create({email: 'murphy@email.com', password: '123'})
   ])
 
-  console.log(`seeded ${users.length} users`)
+  console.log(`seeded ${companies.length} companies`)
   console.log(`seeded successfully`)
 }
 
