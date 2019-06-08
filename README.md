@@ -15,6 +15,7 @@ To run the webapp,
 
 1.  npm i
 2.  createdb iceCompanies
-3.  npm run seed
+3.  npm run seed - (seed the database)
+4.  npm run start-dev
 
 Run the app at http://localhost:8080/
