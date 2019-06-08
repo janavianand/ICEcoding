@@ -1,4 +1,5 @@
-This app is built based on the stack
+This app is built based on the stack -
+
 Frontend
 
 1.  ReactJS
