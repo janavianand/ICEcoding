@@ -12,7 +12,7 @@ router.get('/view', async (req, res, next) => {
 router.put('/update', async (req, res, next) => {
   try {
     let data = await req.body.map(async i => {
-      let company = await Companies.findByPk(i.id)
+      let company = await Companies.findOne({where: {Id: i.Id}})
       return await company.update(i)
     })
     res.json(data)

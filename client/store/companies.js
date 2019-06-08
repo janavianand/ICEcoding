@@ -3,13 +3,11 @@ import axios from 'axios'
 //Action Types
 
 const GET_COMPANIES = 'GET_COMPANIES'
-const UPDATE_COMPANIES = 'UPDATE_COMPANIES'
 const ERROR_DATA = 'ERROR_DATA'
 
 //Action Creators
 
 const getCompanies = companies => ({type: GET_COMPANIES, companies})
-const updateCompanies = data => ({type: UPDATE_COMPANIES, data})
 const setError = () => ({type: ERROR_DATA})
 //Thunks
 
@@ -24,21 +22,32 @@ export const getCompaniesThunk = () => async dispatch => {
 
 export const updateCompaniesThunk = parsedData => async dispatch => {
   try {
+    //----------------------------------------
+    //Set for detecting duplicate ID
+
+    let mySet = new Set()
+    //----------------------------------------
     let validData = parsedData.map(datum => {
-      datum.Id = parseInt(dataum.Id)
+      datum.Id = parseInt(datum.Id)
       datum.sharePrice = parseInt(datum.sharePrice)
       if (datum.Id && datum.sharePrice && datum.comments.length < 257) {
+        mySet.add(datum.Id)
         return datum
-      } else {
-        dispatch(setError())
       }
     })
-    if (validData.length === data.length) {
-      let data = await axios.put('/api/update', data)
-      dispatch(updateCompanies(data))
+    let noDuplicateId = Array.from(mySet)
+    //check for valid data
+    if (
+      validData.length === parsedData.length &&
+      noDuplicateId.length === validData.length
+    ) {
+      let got_data = await axios.put('/api/update', validData)
+    } else {
+      dispatch(setError())
     }
   } catch (error) {
     console.error(error)
+    dispatch(setError())
   }
 }
 //Intitial State
@@ -54,17 +63,6 @@ export default function(state = initialState, action) {
   switch (action.type) {
     case GET_COMPANIES:
       return {...state, companies: action.companies}
-    case UPDATE_COMPANIES:
-      let companies = state.companies
-      notUpdateCompanies = companies.map(comp => {
-        action.data.forEach(data => {
-          if (data.id !== comp.id) {
-            return comp
-          }
-        })
-      })
-      notUpdateCompanies.push(action.data)
-      return {...state, companies: notUpdateCompanies}
     case ERROR_DATA:
       return {...state, error: true}
     default:
