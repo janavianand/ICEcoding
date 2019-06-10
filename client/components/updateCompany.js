@@ -33,9 +33,24 @@ class UpdateCompanies extends React.Component {
       complete: function(result) {
         parsedData = result.data
         console.log(parsedData)
+        //parsedData = [
+        //{
+        //  Id: 100
+        //  Name: "esgltd"
+        //  comments: "nothing"
+        //  sharePrice: 23
+        //  sharePrice Date: "nothing"
+        //},
+        //{
+        //  Id: 200
+        //  Name: "gehLtd"
+        //  comments: "nothing"
+        //  sharePrice: 34
+        //  sharePrice Date: "nothing"
+        //}]
         test(parsedData)
       },
-      header: true
+      header: true // Consider row 1 as heading
     })
     this.setState({
       csvfile: null,
@@ -76,13 +91,13 @@ class UpdateCompanies extends React.Component {
     )
   }
 }
-
+//connecting the redux state to props
 const mapToState = state => {
   return {
     error: state.companies.error
   }
 }
-
+//connecting thunk to props
 const mapToDispatch = dispatch => {
   return {
     updateCompanies: function(data) {

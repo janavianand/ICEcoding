@@ -35,6 +35,7 @@ export const updateCompaniesThunk = parsedData => async dispatch => {
         return datum
       }
     })
+    //check for duplicate ID
     let noDuplicateId = Array.from(mySet)
     //check for valid data
     if (

@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const {Companies} = require('../db/models')
 
+//get all table contents
 router.get('/view', async (req, res, next) => {
   try {
     const companies = await Companies.findAll()
@@ -9,6 +10,7 @@ router.get('/view', async (req, res, next) => {
     next(error)
   }
 })
+//update route
 router.put('/update', async (req, res, next) => {
   try {
     let data = await req.body.map(async i => {

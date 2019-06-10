@@ -28,6 +28,7 @@ class ViewCompanies extends React.Component {
               })}
             </tbody>
           ) : (
+            // Loading Message
             <tbody>
               <tr>
                 <td>Loading</td>
@@ -43,13 +44,13 @@ class ViewCompanies extends React.Component {
     )
   }
 }
-
+//connecting the redux state to props
 const mapStateToProps = state => {
   return {
     companies: state.companies
   }
 }
-
+//connecting thunk to props
 const mapDispatchToProps = dispatch => {
   return {
     getCompanies: function() {
